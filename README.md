@@ -1,10 +1,10 @@
 Reading List
 ============
 
-####Front-end
+###Front-end
  - React
  - Typescript
  - PWA(Progressive Web Application)
 
-####Back-end
+###Back-end
  - Golang
