@@ -28,19 +28,12 @@ jobs:
     - name: Build Project
       run: npm run build
   
-    - name: gsutil rsync project
-      uses: actions-hub/gcloud@master
-      env:
-        PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
-        APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-        CLI: gsutil
-      with:
-        arg: rsync -r gs://${{ secrets.PROJECT_URL }}/build ./build
-        
     - name: Deploy Project
-      uses: actions-hub/gcloud@master
       env:
-        PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
-        APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-      with:
-        arg: app deploy
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: |
+        aws s3 cp \
+          --recursive \
+          --region ap-northeast-2 \
+          build s3://reading-list.info
