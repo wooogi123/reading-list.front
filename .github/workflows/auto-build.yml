@@ -28,10 +28,19 @@ jobs:
     - name: Build Project
       run: npm run build
   
+    - name: gsutil rsync project
+      uses: actions-hub/gcloud@master
+      env:
+        PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
+        APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+        CLI: gsutil
+      with:
+        arg: rsync -r gs://${{ secrets.PROJECT_URL }}/build ./build
+        
     - name: Deploy Project
       uses: actions-hub/gcloud@master
       env:
         PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
         APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       with:
-        arg: gsutil rsync -r gs://${{ secrets.PROJECT_URL }}/build ./build && gcloud app deploy
+        arg: app deploy
