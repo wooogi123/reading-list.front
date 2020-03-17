@@ -17,7 +17,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: node_modules
-        key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json')
+        key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.OS }}-build-
           ${{ runner.OS }}-
@@ -31,7 +31,7 @@ jobs:
     - name: Deploy Project
       uses: actions-hub/gcloud@master
       env:
-        PROJECT_ID: ${{secrets.GCLOUD_PROJECT_ID}}
-        APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
+        PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
+        APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       with:
-        arg: gsutil rsync -r gs://${{secrets.PROJECT_URL}}/build ./build && gcloud app deploy
+        arg: gsutil rsync -r gs://${{ secrets.PROJECT_URL }}/build ./build && gcloud app deploy
