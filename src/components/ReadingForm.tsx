@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
-import { useTodosDispatch } from '../contexts/TodosContext';
+import { useReadingDispatch } from '../contexts/ReadingContext';
 
-function TodoForm() {
+function ReadingForm() {
   const [value, setValue] = useState('');
-  const dispatch = useTodosDispatch();
+  const dispatch = useReadingDispatch();
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     dispatch({
       type: 'CREATE',
+      url: value,
       text: value
     });
     setValue('');
+  }
+
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setValue(e.target.value);
   }
 
   return (
@@ -19,11 +24,11 @@ function TodoForm() {
       <input
         value={value}
         placeholder="무엇을 하실 건가요?"
-        onChange={e => setValue(e.target.value)}
+        onChange={onChange}
       />
       <button>등록</button>
     </form>
   );
 }
 
-export default TodoForm;
+export default ReadingForm;
