@@ -8,10 +8,21 @@ import oc from '../../libs/styles/open-color';
 import Button from '../common/Button';
 
 const WriteFormBlock = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   h3 {
     margin: 0;
     color: ${oc.gray[8]};
     margin-bottom: 1rem;
+  }
+
+  form {
+    flex: 1;
+    display: inherit;
+    flex-direction: inherit;
+    justify-content: inherit;
   }
 `;
 
@@ -32,9 +43,11 @@ const StyledInput = styled.input`
 `;
 
 const StyledTextarea = styled.textarea`
-  font-size: 1rem;
+  flex: 1;
   border: none;
   border-bottom: 1px solid ${oc.gray[5]};
+  font-size: 1rem;
+  padding-top: .5rem;
   padding-bottom: .5rem;
   outline: none;
   width: 100%;

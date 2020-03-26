@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import Responsive from '../common/Responsive';
 import oc from '../../libs/styles/open-color';
 
 const WriteTemplateBlock = styled.div`
@@ -15,10 +16,10 @@ const WriteTemplateBlock = styled.div`
   align-items: center;
 `;
 
-const WhiteBox = styled.div`
+const WhiteBox = styled(Responsive)`
   box-shadow: 0 0 8px rgba(0, 0, 0, .2);
   padding: 2rem;
-  width: 360px;
+  height: 40%;
   background: white;
   border-radius: 2px;
 `;
