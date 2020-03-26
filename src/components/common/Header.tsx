@@ -44,7 +44,7 @@ function Header() {
         <Wrapper>
           <Link className="logo" to="/">ReadingList</Link>
           <div className="right">
-            <Button to="/write">Write</Button>
+            <Button>Room</Button>
           </div>
         </Wrapper>
       </HeaderBlock>

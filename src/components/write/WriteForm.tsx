@@ -76,18 +76,21 @@ interface WriteProps extends RouteComponentProps {}
 
 function WriteForm({ history }: WriteProps) {
   const [url, setUrl] = useState('');
-  const [text, setText] = useState('');
+  const [comment, setComment] = useState('');
   const dispatch = useReadingDispatch();
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     dispatch({
       type: 'CREATE',
       url: url,
-      text: text
+      desc: '',
+      comment: comment,
+      time: new Date(),
+      image: ''
     });
     setUrl('');
-    setText('');
+    setComment('');
     history.push('/');
   }
 
@@ -96,7 +99,7 @@ function WriteForm({ history }: WriteProps) {
   }
 
   function onChangeText(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    setText(e.target.value);
+    setComment(e.target.value);
   }
 
   return (
@@ -109,8 +112,8 @@ function WriteForm({ history }: WriteProps) {
           onChange={onChangeUrl}
         />
         <StyledTextarea
-          value={text}
-          placeholder="Description"
+          value={comment}
+          placeholder="Comment"
           onChange={onChangeText}
         />
         <StyledButton>등록</StyledButton>

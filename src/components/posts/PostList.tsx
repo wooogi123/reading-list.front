@@ -4,6 +4,7 @@ import Responsive from '../common/Responsive';
 import Button from '../common/Button';
 import oc from '../../libs/styles/open-color';
 import PostItem from './PostItem';
+import { useReadingState } from '../../contexts/ReadingContext';
 
 const PostListBlock = styled(Responsive)`
   margin-top: 3rem;
@@ -22,17 +23,18 @@ const StyledButton = styled(Button)`
   }
 `;
 
-
 function PostList() {
+  const readings = useReadingState();
+
   return (
     <PostListBlock>
       <WritePostButtonWrapper>
         <StyledButton to="/write">새 글 작성하기</StyledButton>
       </WritePostButtonWrapper>
       <div>
-        <PostItem />
-        <PostItem />
-        <PostItem />
+        {readings.reverse().map(reading => (
+          <PostItem reading={reading} key={reading.id} />
+        ))}
       </div>
     </PostListBlock>
   );
