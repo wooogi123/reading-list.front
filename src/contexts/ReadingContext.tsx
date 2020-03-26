@@ -3,12 +3,14 @@ import React, { createContext, Dispatch, useReducer, useContext } from 'react';
 export interface Reading {
   id: number;
   url: string;
-  text: string;
-  done: boolean;
+  desc: string;
+  comment: string;
+  time: Date;
+  image: string;
 }
 
 type Action =
-  | { type: 'CREATE'; url: string, text: string }
+  | { type: 'CREATE'; url: string, desc: string, comment: string, time: Date, image: string }
   | { type: 'REMOVE'; id: number };
 
 type ReadingState = Reading[];
@@ -24,8 +26,10 @@ function readingReducer(state: ReadingState, action: Action): ReadingState {
       return state.concat({
         id: nextId,
         url: action.url,
-        text: action.text,
-        done: false
+        desc: action.desc,
+        comment: action.comment,
+        time: action.time,
+        image: action.image
       });
     case 'REMOVE':
       return state.filter(todo => todo.id !== action.id);
@@ -34,26 +38,16 @@ function readingReducer(state: ReadingState, action: Action): ReadingState {
   }
 }
 
-export function ReadingContextProvider({ children }: {children: React.ReactNode }) {
+export function ReadingContextProvider({ children }: { children: React.ReactNode }) {
   const [readings, dispatch] = useReducer(readingReducer, [
     {
       id: 1,
       url: 'https://google.com',
-      text: 'Context API 배우기',
-      done: true
+      desc: '',
+      comment: 'Context API 배우기',
+      time: new Date(),
+      image: ''
     },
-    {
-      id: 2,
-      url: 'https://google.com',
-      text: 'TypeScript 배우기',
-      done: true
-    },
-    {
-      id: 3,
-      url: 'https://google.com',
-      text: 'TypeScript 와 Context API 함께 사용하기',
-      done: false
-    }
   ]);
 
   return (
