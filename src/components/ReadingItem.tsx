@@ -5,6 +5,9 @@ import styled from '@emotion/styled';
 const List = styled.li<ReadingItemProps>`
 `;
 
+const Url = styled.a`
+`;
+
 const Text = styled.span`
   cursor: pointer;
 `;
@@ -31,6 +34,7 @@ function ReadingItem({ reading }: ReadingItemProps) {
 
   return (
     <List reading={reading}>
+      <Url>{reading.url}</Url>
       <Text>{reading.text}</Text>
       <Remove onClick={onRemove}>(X)</Remove>
     </List>

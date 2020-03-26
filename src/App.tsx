@@ -1,14 +1,17 @@
 import React from 'react';
-import ReadingForm from './components/ReadingForm';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ReadingList from './components/ReadingList';
+import WritePage from './pages/WritePage';
 import { ReadingContextProvider } from './contexts/ReadingContext';
 
 function App() {
   return (
-    <ReadingContextProvider>
-      <ReadingForm />
-      <ReadingList />
-    </ReadingContextProvider>
+    <Router>
+      <ReadingContextProvider>
+        <Route path="/" component={ReadingList} />
+        <Route path="/write" component={WritePage} />
+      </ReadingContextProvider>
+    </Router>
   );
 }
 

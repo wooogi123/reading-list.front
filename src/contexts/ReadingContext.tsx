@@ -34,7 +34,7 @@ function readingReducer(state: ReadingState, action: Action): ReadingState {
   }
 }
 
-export function ReadingContextProvider({ children }: {children: React.ReactNode }) {
+export function ReadingContextProvider({ children }: { children: React.ReactNode }) {
   const [readings, dispatch] = useReducer(readingReducer, [
     {
       id: 1,
