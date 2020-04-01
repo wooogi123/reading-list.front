@@ -1,63 +1,53 @@
 import React from 'react';
 import { useReadingDispatch, Reading } from '../../contexts/ReadingContext';
 import styled from '@emotion/styled';
-import oc from '../../libs/styles/open-color';
+import tw from 'tailwind.macro';
 
 const PostItemBlock = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  cursor: pointer;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-
-  &:first-of-type {
-    padding-top: 0;
-  }
+  ${tw`
+    flex flex-row justify-between cursor-pointer py-4
+  `}
 
   & + & {
-    border-top: 1px solid ${oc.gray[5]};
+    ${tw`
+      border-t border-solid border-gray-400
+    `}
   }
 `;
 
 const SubInfo = styled.div`
-  flex: 1;
-  display: inherit;
-  flex-direction: column;
-  justify-content: inherit;
-  color: ${oc.gray[6]};
-  margin-left: 1.5rem;
+  ${tw`
+    flex-1 flex flex-col justify-between text-gray-600 ml-6
+  `}
 
   h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 0;
-    margin-top: 0;
-    color: ${oc.gray[8]};
-    &:hover {
-    color: ${oc.gray[6]};
-    }
+    ${tw`
+      my-0 text-xl font-semibold text-gray-800 hover:text-gray-600
+    `}
   }
 `;
 
 const StyledImg = styled.img`
-  border: 1px solid ${oc.gray[4]};
-  width: 100px;
-  height: 100px;
+  ${tw`
+    border border-solid border-gray-400 w-24 h-24
+  `}
 `;
 
 const Remove = styled.span`
-  color: red;
-  margin-left: 4px;
-  cursor: pointer;
+  ${tw`
+    mr-4 text-red-600
+  `}
 `;
 
 const Comment = styled.p`
-  color: ${oc.gray[6]};
-  
+  ${tw`
+    text-gray-600
+  `}
+
   span {
-    color: ${oc.gray[8]};
-    font-weight: 600
+    ${tw`
+      text-gray-800 font-semibold
+    `}
   }
 `;
 
@@ -75,27 +65,27 @@ function PostItem({ reading }: ReadingItemProps) {
   function onRemove() {
     dispatch({
       type: 'REMOVE',
-      id: reading.id
+      id: reading.id,
     });
   }
 
   return (
     <PostItemBlock>
-      {(reading.image === '')
-        ? <StyledImg src="./logo192.png" alt="Placeholder" onClick={onClick}/>
-        : <StyledImg src={reading.image} alt="Placeholder" onClick={onClick}/>
-      }
+      {reading.image === '' ? (
+        <StyledImg src="./logo192.png" alt="Placeholder" onClick={onClick} />
+      ) : (
+        <StyledImg src={reading.image} alt="Placeholder" onClick={onClick} />
+      )}
       <SubInfo onClick={onClick}>
         <h3>{reading.url}</h3>
         <span>{reading.time.toLocaleString()}</span>
-        {(reading.desc === '')
-          ? null
-          : <p>{reading.desc}</p>
-        }
-        {(reading.comment === '')
-          ? null
-          : <Comment><span>Comment: </span>{reading.comment}</Comment>
-        }
+        {reading.desc === '' ? null : <p>{reading.desc}</p>}
+        {reading.comment === '' ? null : (
+          <Comment>
+            <span>Comment: </span>
+            {reading.comment}
+          </Comment>
+        )}
       </SubInfo>
       <Remove onClick={onRemove}>(X)</Remove>
     </PostItemBlock>

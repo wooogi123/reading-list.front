@@ -1,31 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
-import oc from '../../libs/styles/open-color';
+import tw from 'tailwind.macro';
 
-const buttonStyle = css`
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: .5rem 1rem;
-  color: white;
-  outline: none;
-  cursor: pointer;
-  background: ${oc.gray[8]};
-  &:hover {
-    background: ${oc.gray[6]};
-  }
+const common = tw`
+    bg-gray-700 hover:bg-gray-500
+    border-0 rounded outline-none
+    text-base text-white font-bold
+    cursor-pointer py-2 px-4
 `;
 
-const StyledButton = styled.button`
-  ${buttonStyle}
+const StyledButton = styled('button')`
+  ${common}
 `;
 
 const StyledLink = styled(Link)`
-  ${buttonStyle}
-  text-decoration: none;
+  ${common}
 `;
 
 interface ButtonProps {
@@ -34,11 +24,8 @@ interface ButtonProps {
 }
 
 function Button(props: ButtonProps) {
-  return props.to ? (
-    <StyledLink {...props} to={props.to}/>
-  ) : (
-    <StyledButton {...props} />
-  );
+  const { to } = props;
+  return to ? <StyledLink {...props} to={to} /> : <StyledButton {...props} />;
 }
 
 export default Button;

@@ -3,38 +3,36 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import Responsive from './Responsive';
 import Button from './Button';
-import oc from '../../libs/styles/open-color';
+import tw from 'tailwind.macro';
 
 const HeaderBlock = styled.div`
-  position: fixed;
-  width: 100%;
-  background: white;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, .4);
+  ${tw`
+    fixed w-full bg-white border-b-2 border-solid border-gray-400
+  `}
 `;
 
 const Wrapper = styled(Responsive)`
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  ${tw`
+    h-20 flex items-center justify-between
+  `}
+
   .logo {
-    text-decoration: none;
-    color: ${oc.gray[8]};
-    font-size: 1.125rem;
-    font-weight: 800;
-    letter-spacing: 2px;
+    ${tw`
+      text-xl font-extrabold tracking-widest text-gray-800 hover:text-gray-600
+    `}
   }
-  .logo:hover {
-    color: ${oc.gray[6]};
-  }
+
   .right {
-    display: inherit;
-    align-items: center;
+    ${tw`
+      flex items-center
+    `}
   }
 `;
 
 const Spacer = styled.div`
-  height: 4rem;
+  ${tw`
+    h-16
+  `}
 `;
 
 function Header() {
@@ -42,7 +40,9 @@ function Header() {
     <>
       <HeaderBlock>
         <Wrapper>
-          <Link className="logo" to="/">ReadingList</Link>
+          <Link className="logo" to="/">
+            ReadingList
+          </Link>
           <div className="right">
             <Button>Room</Button>
           </div>
