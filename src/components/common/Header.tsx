@@ -7,7 +7,7 @@ import tw from 'tailwind.macro';
 
 const HeaderBlock = styled.div`
   ${tw`
-    fixed w-full bg-white border-b-2 border-solid border-gray-400
+    fixed w-full bg-white px-4
   `}
 `;
 

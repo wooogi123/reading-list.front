@@ -12,8 +12,12 @@ const WriteTemplateBlock = styled.div`
 
 const WhiteBox = styled(Responsive)`
   ${tw`
-    p-8 bg-white rounded-lg
+    h-full p-8 bg-white md:rounded-lg
   `}
+
+  @media (min-width: 768px) {
+    height: 60%;
+  }
 `;
 
 function WriteTemplate({

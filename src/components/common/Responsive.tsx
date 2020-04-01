@@ -4,8 +4,12 @@ import tw from 'tailwind.macro';
 
 const ResponsiveBlock = styled.div`
   ${tw`
-    px-4 my-auto
+    w-full mx-auto
   `}
+
+  @media (min-width: 768px) {
+    width: 75%;
+  }
 `;
 
 interface ResponsiveProps extends React.HTMLProps<HTMLDivElement> {}

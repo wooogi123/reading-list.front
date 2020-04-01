@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/common/Header';
+import Footer from '../components/common/Footer';
 import PostList from '../components/posts/PostList';
 
 function PostListPage() {
@@ -7,6 +8,7 @@ function PostListPage() {
     <>
       <Header />
       <PostList />
+      <Footer />
     </>
   );
 }

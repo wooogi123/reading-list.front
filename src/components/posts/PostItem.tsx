@@ -17,31 +17,31 @@ const PostItemBlock = styled.div`
 
 const SubInfo = styled.div`
   ${tw`
-    flex-1 flex flex-col justify-between text-gray-600 ml-6
+    flex-1 flex flex-col justify-between text-gray-600 mx-4
   `}
 
   h3 {
     ${tw`
-      my-0 text-xl font-semibold text-gray-800 hover:text-gray-600
+      text-base md:text-lg my-0 font-semibold text-gray-800 hover:text-gray-600
     `}
   }
 `;
 
 const StyledImg = styled.img`
   ${tw`
-    border border-solid border-gray-400 w-24 h-24
+    border border-solid border-gray-400 w-20 h-20
   `}
 `;
 
 const Remove = styled.span`
   ${tw`
-    mr-4 text-red-600
+    text-red-600
   `}
 `;
 
 const Comment = styled.p`
   ${tw`
-    text-gray-600
+    text-sm md:text-base text-gray-600
   `}
 
   span {

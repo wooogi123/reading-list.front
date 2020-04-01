@@ -3,23 +3,27 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 
-const common = tw`
+const StyledButton = styled('button')`
+  ${tw`
     bg-gray-700 hover:bg-gray-500
     border-0 rounded outline-none
     text-base text-white font-bold
     cursor-pointer py-2 px-4
-`;
-
-const StyledButton = styled('button')`
-  ${common}
+  `}
 `;
 
 const StyledLink = styled(Link)`
-  ${common}
+  ${tw`
+    bg-purple-700 hover:bg-purple-500
+    border-0 rounded outline-none
+    text-base text-white font-bold
+    cursor-pointer py-2 px-4
+  `}
 `;
 
 interface ButtonProps {
   to?: string;
+  className?: string;
   children: string;
 }
 
