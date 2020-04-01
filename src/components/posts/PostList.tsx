@@ -1,26 +1,14 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import tw from 'tailwind.macro';
 import Responsive from '../common/Responsive';
-import Button from '../common/Button';
-import oc from '../../libs/styles/open-color';
 import PostItem from './PostItem';
 import { useReadingState } from '../../contexts/ReadingContext';
 
 const PostListBlock = styled(Responsive)`
-  margin-top: 3rem;
-`;
-
-const WritePostButtonWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 3rem;
-`;
-
-const StyledButton = styled(Button)`
-  background: ${oc.violet[6]};
-  &:hover {
-    background: ${oc.violet[4]};
-  }
+  ${tw`
+    mt-8 px-4
+  `}
 `;
 
 function PostList() {
@@ -28,11 +16,8 @@ function PostList() {
 
   return (
     <PostListBlock>
-      <WritePostButtonWrapper>
-        <StyledButton to="/write">새 글 작성하기</StyledButton>
-      </WritePostButtonWrapper>
       <div>
-        {readings.reverse().map(reading => (
+        {readings.reverse().map((reading) => (
           <PostItem reading={reading} key={reading.id} />
         ))}
       </div>

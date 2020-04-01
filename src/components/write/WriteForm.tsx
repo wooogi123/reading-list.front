@@ -1,75 +1,58 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import React, { useState } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { useReadingDispatch } from '../../contexts/ReadingContext';
 import styled from '@emotion/styled';
-import oc from '../../libs/styles/open-color';
+import tw from 'tailwind.macro';
 import Button from '../common/Button';
+import { useReadingDispatch } from '../../contexts/ReadingContext';
 
 const WriteFormBlock = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  ${tw`
+    h-full flex flex-col justify-between
+  `}
+
   h3 {
-    margin: 0;
-    color: ${oc.gray[8]};
-    margin-bottom: 1rem;
+    ${tw`
+      m-0 mb-4 text-gray-800
+    `}
   }
 
   form {
-    flex: 1;
-    display: inherit;
-    flex-direction: inherit;
-    justify-content: inherit;
+    ${tw`
+      flex-1 flex flex-col justify-between
+    `}
   }
 `;
 
 const StyledInput = styled.input`
-  font-size: 1rem;
-  border: none;
-  border-bottom: 1px solid ${oc.gray[5]};
-  padding-bottom: .5rem;
-  outline: none;
-  width: 100%;
-  &:focus {
-    color: ${oc.violet[7]};
-    border-bottom: 1px solid ${oc.gray[7]};
-  }
+  ${tw`
+    text-xl border-b border-solid border-gray-400 outline-none w-full
+    focus:text-purple-700 focus:border-b focus:border-solid focus:border-gray-600
+  `}
+
   & + & {
-    margin-top: 1rem;
+    ${tw`
+      mt-4
+    `}
   }
 `;
 
 const StyledTextarea = styled.textarea`
-  flex: 1;
-  border: none;
-  border-bottom: 1px solid ${oc.gray[5]};
-  font-size: 1rem;
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-  outline: none;
-  width: 100%;
-  &:focus {
-    color: ${oc.violet[7]};
-    border-bottom: 1px solid ${oc.gray[7]};
-  }
+  ${tw`
+    flex-1 border-b border-solid border-gray-400 text-base py-2 outline-none w-full
+    focus:text-purple-700 focus:border-b focus:border-solid focus:border-gray-600
+  `}
+
   & + & {
-    margin-top: 1rem;
+    ${tw`
+      mt-4
+    `}
   }
 `;
 
 const StyledButton = styled(Button)`
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  margin-top: 1rem;
-  width: 100%;
-  font-size: 1.125rem;
-  background: ${oc.violet[6]};
-  &:hover {
-    background: ${oc.violet[4]};
-  }
+  ${tw`
+    py-3 mt-4 w-full text-xl bg-purple-700 hover:bg-purple-500
+  `}
 `;
 
 interface WriteProps extends RouteComponentProps {}
@@ -87,7 +70,7 @@ function WriteForm({ history }: WriteProps) {
       desc: '',
       comment: comment,
       time: new Date(),
-      image: ''
+      image: '',
     });
     setUrl('');
     setComment('');
