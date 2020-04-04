@@ -19,7 +19,7 @@ const Wrapper = styled(Responsive)`
 
 const StyledButton = styled(Button)`
   ${tw`
-    rounded-full w-16 h-16 my-8 mx-8 bg-purple-600
+    text-2xl rounded-full w-16 h-16 my-8 mx-8 bg-purple-600
   `}
 `;
 

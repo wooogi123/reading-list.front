@@ -69,7 +69,8 @@ function WriteForm({ history }: WriteProps) {
       url: url,
       desc: '',
       comment: comment,
-      time: new Date(),
+      createAt: new Date(),
+      roomId: 1,
       image: '',
     });
     setUrl('');

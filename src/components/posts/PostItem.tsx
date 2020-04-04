@@ -78,7 +78,7 @@ function PostItem({ reading }: ReadingItemProps) {
       )}
       <SubInfo onClick={onClick}>
         <h3>{reading.url}</h3>
-        <span>{reading.time.toLocaleString()}</span>
+        <span>{reading.createAt.toLocaleString()}</span>
         {reading.desc === '' ? null : <p>{reading.desc}</p>}
         {reading.comment === '' ? null : (
           <Comment>
