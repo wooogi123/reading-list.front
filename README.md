@@ -2,10 +2,17 @@ Reading List
 ===================
 -------------------
 
-### Front-end
+### Front-end (Future)
  - React
- - Typescript
+ - TypeScript
  - PWA(Progressive Web Application)
 
 ### Back-end
- - Golang
+ - Node.js
+ - TypeScript (Future)
+
+## Todo
+ - Folder
+ - Add citron
+ - Secure
+ - Icon change
