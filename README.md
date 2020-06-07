@@ -1,7 +1,3 @@
-Reading List
-===================
--------------------
-
 ### Front-end (Future)
  - React
  - TypeScript
