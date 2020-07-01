@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 import Responsive from '../common/Responsive';
 import PostItem from './PostItem';
-import { useReadingState } from '../../contexts/ReadingContext';
+import { useReadingStore } from '../../hooks';
 
 const PostListBlock = styled(Responsive)`
   ${tw`
@@ -12,7 +12,7 @@ const PostListBlock = styled(Responsive)`
 `;
 
 function PostList() {
-  const readings = useReadingState();
+  const readings = useReadingStore();
 
   return (
     <PostListBlock>

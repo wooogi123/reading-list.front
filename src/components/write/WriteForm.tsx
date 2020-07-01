@@ -3,7 +3,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 import Button from '../common/Button';
-import { useReadingDispatch } from '../../contexts/ReadingContext';
+import { useReadingCreate } from '../../hooks';
 
 const WriteFormBlock = styled.div`
   ${tw`
@@ -58,28 +58,28 @@ const StyledButton = styled(Button)`
 interface WriteProps extends RouteComponentProps {}
 
 function WriteForm({ history }: WriteProps) {
-  const [url, setUrl] = useState('');
+  const [uri, setUri] = useState('');
   const [comment, setComment] = useState('');
-  const dispatch = useReadingDispatch();
+
+  const create = useReadingCreate();
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    dispatch({
-      type: 'CREATE',
-      url: url,
+    create({
+      uri,
       desc: '',
-      comment: comment,
-      createAt: new Date(),
+      comment,
+      createdAt: new Date(),
       roomId: 1,
       image: '',
     });
-    setUrl('');
+    setUri('');
     setComment('');
     history.push('/');
   }
 
   function onChangeUrl(e: React.ChangeEvent<HTMLInputElement>) {
-    setUrl(e.target.value);
+    setUri(e.target.value);
   }
 
   function onChangeText(e: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -90,16 +90,8 @@ function WriteForm({ history }: WriteProps) {
     <WriteFormBlock>
       <h3>Write</h3>
       <form onSubmit={onSubmit}>
-        <StyledInput
-          value={url}
-          placeholder="https://"
-          onChange={onChangeUrl}
-        />
-        <StyledTextarea
-          value={comment}
-          placeholder="Comment"
-          onChange={onChangeText}
-        />
+        <StyledInput value={uri} placeholder="https://" onChange={onChangeUrl} />
+        <StyledTextarea value={comment} placeholder="Comment" onChange={onChangeText} />
         <StyledButton>등록</StyledButton>
       </form>
     </WriteFormBlock>
