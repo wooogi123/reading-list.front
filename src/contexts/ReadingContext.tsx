@@ -5,7 +5,9 @@ export interface Reading {
   url: string;
   desc: string;
   comment: string;
-  time: Date;
+  createAt: Date;
+  updateAt: Date;
+  roomId: number;
   image: string;
 }
 
@@ -15,7 +17,8 @@ type Action =
       url: string;
       desc: string;
       comment: string;
-      time: Date;
+      createAt: Date;
+      roomId: number;
       image: string;
     }
   | { type: 'REMOVE'; id: number };
@@ -37,7 +40,9 @@ function readingReducer(state: ReadingState, action: Action): ReadingState {
         url: action.url,
         desc: action.desc,
         comment: action.comment,
-        time: action.time,
+        createAt: action.createAt,
+        updateAt: action.createAt,
+        roomId: action.roomId,
         image: action.image,
       });
     }
@@ -61,7 +66,9 @@ export function ReadingContextProvider({
       url: 'https://google.com',
       desc: '',
       comment: 'Context API 배우기',
-      time: new Date(),
+      createAt: new Date(),
+      updateAt: new Date(),
+      roomId: 1,
       image: '',
     },
   ]);

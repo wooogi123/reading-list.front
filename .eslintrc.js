@@ -34,11 +34,13 @@ module.exports = {
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-inferrable-types": "off",
     "prettier/prettier": ["error"],
     "react/jsx-filename-extension": ["error", {
       "extensions": [".ts", ".tsx"]
     }],
     "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "prettier/prettier": "off"

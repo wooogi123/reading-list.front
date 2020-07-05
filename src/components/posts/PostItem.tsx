@@ -1,7 +1,8 @@
 import React from 'react';
-import { useReadingDispatch, Reading } from '../../contexts/ReadingContext';
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
+import { useReadingRemove } from '../../hooks';
+import { Reading } from '../../store';
 
 const PostItemBlock = styled.div`
   ${tw`
@@ -56,17 +57,14 @@ interface ReadingItemProps {
 }
 
 function PostItem({ reading }: ReadingItemProps) {
-  const dispatch = useReadingDispatch();
+  const remove = useReadingRemove();
 
   function onClick() {
-    window.open(reading.url, '_blank')?.focus();
+    window.open(reading.uri, '_blank')?.focus();
   }
 
   function onRemove() {
-    dispatch({
-      type: 'REMOVE',
-      id: reading.id,
-    });
+    remove(reading.id);
   }
 
   return (
@@ -77,8 +75,8 @@ function PostItem({ reading }: ReadingItemProps) {
         <StyledImg src={reading.image} alt="Placeholder" onClick={onClick} />
       )}
       <SubInfo onClick={onClick}>
-        <h3>{reading.url}</h3>
-        <span>{reading.time.toLocaleString()}</span>
+        <h3>{reading.uri}</h3>
+        <span>{reading.createdAt.toLocaleString()}</span>
         {reading.desc === '' ? null : <p>{reading.desc}</p>}
         {reading.comment === '' ? null : (
           <Comment>
