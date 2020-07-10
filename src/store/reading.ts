@@ -27,8 +27,7 @@ export type ReadingAction = ActionType<typeof readingActions>;
 
 export type ReadingState = Reading[];
 
-const local = localStorage.getItem('ReadingLists');
-const initState: ReadingState = local ? JSON.parse(local) : [];
+const initState: ReadingState = [];
 
 export default createReducer<ReadingState, ReadingAction>(initState, {
   [READING_CREATE]: (state, action: ReadingAction) => {
@@ -38,12 +37,10 @@ export default createReducer<ReadingState, ReadingAction>(initState, {
       ...(action.payload as ReadingCreate),
       updatedAt: new Date(),
     });
-    localStorage.setItem('ReadingLists', JSON.stringify(ret));
     return ret;
   },
   [READING_REMOVE]: (state, action: ReadingAction) => {
     const ret = state.filter((reading) => reading.id !== (action.payload as number));
-    localStorage.setItem('ReadingLists', JSON.stringify(ret));
     return ret;
   },
 });
